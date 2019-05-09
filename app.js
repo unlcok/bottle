@@ -10,6 +10,15 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          // 发起网络请求
+          wx.request({
+            url: 'http://127.0.0.1:8080/bottle/api/v1/user/wechat/login?code=' + res.code,
+            method: 'POST'
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
     // 获取用户信息
