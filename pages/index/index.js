@@ -12,7 +12,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../main/main'
     })
   },
   onLoad: function () {
@@ -49,6 +49,19 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+    // 发送用户信息到后台
+    var token = wx.getStorageSync('token')
+    wx.request({
+      url: 'http://www.badme.xyz/bottle/api/v1/user/saveInfo',
+      method: 'POST',
+      data: {
+        rawData: e.detail.rawData,
+        signature: e.detail.signature
+      },
+      header: {
+        "token": token
+      }
     })
   }
 })
