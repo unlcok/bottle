@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    content: null,
   },
 
   /**
@@ -62,5 +62,29 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  
+  editBottle: function () {
+
+  },
+
+  bottleContent: function (e) {
+    this.data.content = e.detail.value
+  },
+
+  throwBottle: function () {
+    var user = wx.getStorageSync("userInfo");
+    var type = user.gender === 1 ? "girl" : "man";
+    wx.request({
+      url: 'http://www.badme.xyz/bottle/api/v1/bottle',
+      method: 'POST',
+      data: {
+        type: type,
+        content: this.data.content
+      },
+      header: {
+        "token": wx.getStorageSync("token")
+      }
+    })
   }
 })

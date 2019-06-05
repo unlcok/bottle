@@ -50,6 +50,7 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    wx.setStorageSync("userInfo", userInfo.detail.userInfo)
     // 发送用户信息到后台
     var token = wx.getStorageSync('token')
     wx.request({

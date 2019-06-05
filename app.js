@@ -23,6 +23,7 @@ App({
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                     wx.getUserInfo({
                       success: res => {
+                        wx.setStorageSync("userInfo", res.userInfo)
                         // 可以将 res 发送给后台解码出 unionId
                         this.globalData.userInfo = res.userInfo
                         // 发送用户信息到后台
@@ -49,10 +50,14 @@ App({
               })
               // websocket链接
               wx.connectSocket({
-                url: 'ws://www.badme.xyz/bottle/api/chat?token='+token,
+                url: 'ws://129.28.148.83:8188/bottle/socket/chat?token='+token
+                //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
               })
               wx.onSocketOpen(function () {
                 console.log("socket连接成功")
+                wx.showToast({
+                  title: 'socket连接成功',
+                })
               })
               wx.onSocketMessage(function (res) {
                 console.log("收到消息:"+res)

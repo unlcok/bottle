@@ -1,22 +1,26 @@
 <!--pages/main/main.wxml-->
 <!-- <text>pages/main/main.wxml</text> --> 
     <view class="main">
-        <view class="bottle">
+        <image src="./pic/back.png" class="bottle">
             <text class="title">漂流瓶</text>
-            <view class="box"></view>
+            <view class="throw">
+              <input type="text" bindinput="bottleContent"/>
+              <button bindtap="throwBottle">扔出去</button>
+              </view>
+            <view class="box" />
             <view class="operation">
                 <view>
-                    <image src="./pic/throw.png" />
+                    <image bindtap="editBottle" src="./pic/throw.png" />
                     <text>扔一个</text>
                 </view>
                 <view>
-                    <image src="./pic/pick.png" />
+                    <image bindtap="salvageBottle" src="./pic/pick.png" />
                     <text>捡一个</text>
                 </view>
                 <view>
-                    <image src="./pic/mine.png" />
+                    <image bindtap="bottleList" src="./pic/mine.png" />
                     <text>我的瓶子</text>
                 </view>
             </view>
-        </view>
+        </image>
     </view>
