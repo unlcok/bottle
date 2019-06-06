@@ -15,6 +15,16 @@ Page({
       url: '../main/main'
     })
   },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    // websocket链接
+    wx.connectSocket({
+      url: 'ws://localhost:8188/bottle/socket/chat?token=' + wx.getStorageSync("token")
+      //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -50,7 +60,7 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    wx.setStorageSync("userInfo", userInfo.detail.userInfo)
+    wx.setStorageSync("userInfo", this.data.userInfo)
     // 发送用户信息到后台
     var token = wx.getStorageSync('token')
     wx.request({

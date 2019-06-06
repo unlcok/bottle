@@ -15,6 +15,7 @@ Page({
 
   },
 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -26,7 +27,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log("main onShow");
+    // websocket链接
+    wx.connectSocket({
+      url: 'ws://localhost:8188/bottle/socket/chat?token=' + wx.getStorageSync("token")
+      //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
+    });
   },
 
   /**
@@ -84,6 +90,11 @@ Page({
       },
       header: {
         "token": wx.getStorageSync("token")
+      },
+      success: data => {
+        wx.showToast({
+          title: '发送成功',
+        })
       }
     })
   }
