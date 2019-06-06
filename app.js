@@ -54,7 +54,7 @@ App({
               if (!test){
                 // websocket链接
                 wx.connectSocket({
-                  url: 'ws://localhost:8188/bottle/socket/chat?token=' + token
+                  url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + token
                   //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
                 })
               }

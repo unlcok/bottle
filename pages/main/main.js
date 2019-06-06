@@ -30,7 +30,7 @@ Page({
     console.log("main onShow");
     // websocket链接
     wx.connectSocket({
-      url: 'ws://localhost:8188/bottle/socket/chat?token=' + wx.getStorageSync("token")
+      url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + wx.getStorageSync("token")
       //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
     });
   },
