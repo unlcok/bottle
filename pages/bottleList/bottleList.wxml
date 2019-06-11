@@ -1,0 +1,9 @@
+<!--pages/bottleList/bottleList.wxml-->
+<view class="container bottle-list">
+  <block wx:for="{{bottles}}" wx:for-item="bottle" wx:key="{{bottle.bottle.id}}">
+    <view class="bottle-item">
+    <image class="userPhoto" src="{{bottle.anotherUser.photo}}" />
+    <text>未读条数：{{bottle.unreadCount}}</text>
+    </view>
+  </block>
+</view>

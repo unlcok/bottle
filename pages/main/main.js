@@ -108,6 +108,12 @@ Page({
     })
   },
 
+  bottleList: function () {
+    wx.navigateTo({
+      url: '../bottleList/bottleList'
+    })
+  },
+
   throwBottle: function() {
     var user = wx.getStorageSync("userInfo");
     var type = user.gender === 1 ? "girl" : "man";

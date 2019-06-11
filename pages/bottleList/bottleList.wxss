@@ -1,0 +1,5 @@
+/* pages/bottleList/bottleList.wxss */
+.userPhoto{
+  width: 100rpx;
+  height: 100rpx;
+}
