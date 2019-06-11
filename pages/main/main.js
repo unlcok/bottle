@@ -6,12 +6,13 @@ Page({
    */
   data: {
     content: null,
+    hiddenName: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
@@ -19,14 +20,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     console.log("main onShow");
     // websocket链接
     wx.connectSocket({
@@ -38,47 +39,76 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  },
-  
-  editBottle: function () {
+  onShareAppMessage: function() {
 
   },
 
-  bottleContent: function (e) {
+  editBottle: function() {
+    console.log("aa");
+    this.setData({
+      hiddenName: false
+    })
+  },
+
+  bottleContent: function(e) {
     this.data.content = e.detail.value
   },
 
-  throwBottle: function () {
+  salvageBottle: function() {
+    wx.request({
+      url: 'http://www.badme.xyz/bottle/api/v1/bottle',
+      method: 'GET',
+      header: {
+        "token": wx.getStorageSync("token")
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.success === false){
+          wx.showToast({
+            title: res.data.resultMsg,
+          })
+        } else if (res.data.data == null){
+          wx.showToast({
+            title: '捞到了空瓶子',
+          })
+        }else {
+          wx.showToast({
+            title: '打捞成功',
+          })
+        }
+      }
+    })
+  },
+
+  throwBottle: function() {
     var user = wx.getStorageSync("userInfo");
     var type = user.gender === 1 ? "girl" : "man";
     wx.request({
@@ -92,6 +122,9 @@ Page({
         "token": wx.getStorageSync("token")
       },
       success: data => {
+        this.setData({
+          hiddenName: true
+        })
         wx.showToast({
           title: '发送成功',
         })

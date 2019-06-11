@@ -3,8 +3,8 @@
     <view class="main">
         <image src="./pic/back.png" class="bottle">
             <text class="title">漂流瓶</text>
-            <view class="throw">
-              <input type="text" bindinput="bottleContent"/>
+            <view class="throw" hidden='{{hiddenName}}'>
+              <input class ="msg" type="text" bindinput="bottleContent"/>
               <button bindtap="throwBottle">扔出去</button>
               </view>
             <view class="box" />

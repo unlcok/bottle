@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     // 展示本地存储能力
     var token = wx.getStorageSync('token')
 
@@ -48,16 +48,11 @@ App({
                   }
                 }
               })
-              var test = wx.getStorageSync('isConnect');
-              console.log(test);
-              console.log(!test);
-              if (!test){
-                // websocket链接
-                wx.connectSocket({
-                  url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + token
-                  //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
-                })
-              }
+              // websocket链接
+              wx.connectSocket({
+                url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + token
+                //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
+              })
             }
           })
         } else {
@@ -65,19 +60,19 @@ App({
         }
       }
     })
-    wx.onSocketOpen(function () {
+    wx.onSocketOpen(function() {
       console.log("socket连接成功")
       wx.showToast({
         title: 'socket连接成功',
       })
     })
-    wx.onSocketMessage(function (res) {
+    wx.onSocketMessage(function(res) {
       console.log("收到消息:" + res)
     })
-    wx.onSocketClose(function (){
+    wx.onSocketClose(function() {
       console.log("socket关闭")
     })
-    wx.onSocketError(function (){
+    wx.onSocketError(function() {
       console.log("socketError")
     })
   },
