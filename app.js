@@ -67,7 +67,7 @@ App({
       })
     })
     wx.onSocketMessage(function(res) {
-      console.log("收到消息:" + res)
+      console.log("收到消息:" + res.data)
     })
     wx.onSocketClose(function() {
       console.log("socket关闭")
