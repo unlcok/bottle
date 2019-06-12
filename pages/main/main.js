@@ -86,7 +86,7 @@ Page({
 
   salvageBottle: function() {
     wx.request({
-      url: 'http://www.badme.xyz/bottle/api/v1/bottle',
+      url: 'https://www.badme.xyz/bottle/api/v1/bottle',
       method: 'GET',
       header: {
         "token": wx.getStorageSync("token")
@@ -120,7 +120,7 @@ Page({
     var user = wx.getStorageSync("userInfo");
     var type = user.gender === 1 ? "girl" : "man";
     wx.request({
-      url: 'http://www.badme.xyz/bottle/api/v1/bottle',
+      url: 'https://www.badme.xyz/bottle/api/v1/bottle',
       method: 'POST',
       data: {
         type: type,
