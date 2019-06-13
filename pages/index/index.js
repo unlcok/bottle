@@ -64,7 +64,7 @@ Page({
     // 发送用户信息到后台
     var token = wx.getStorageSync('token')
     wx.request({
-      url: 'http://www.badme.xyz/bottle/api/v1/user/saveInfo',
+      url: 'https://www.badme.xyz/bottle/api/v1/user/saveInfo',
       method: 'POST',
       data: {
         rawData: e.detail.rawData,

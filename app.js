@@ -11,7 +11,7 @@ App({
         if (res.code) {
           // 发起网络请求
           wx.request({
-            url: 'http://www.badme.xyz/bottle/api/v1/user/wechat/login?code=' + res.code,
+            url: 'https://www.badme.xyz/bottle/api/v1/user/wechat/login?code=' + res.code,
             method: 'POST',
             success: data => {
               token = data.data.data.token
@@ -28,7 +28,7 @@ App({
                         this.globalData.userInfo = res.userInfo
                         // 发送用户信息到后台
                         wx.request({
-                          url: 'http://www.badme.xyz/bottle/api/v1/user/saveInfo',
+                          url: 'https://www.badme.xyz/bottle/api/v1/user/saveInfo',
                           method: 'POST',
                           data: {
                             rawData: res.rawData,
@@ -51,7 +51,7 @@ App({
               // websocket链接
               wx.connectSocket({
                 url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + token
-                //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
+                //url: 'wss://www.badme.xyz/bottle/socket/chat?token='+token
               })
             }
           })
