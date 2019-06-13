@@ -118,7 +118,7 @@ Page({
 
   throwBottle: function() {
     var user = wx.getStorageSync("userInfo");
-    var type = user.gender === 1 ? "girl" : "man";
+    var type = user.gender === 1 ? "man" : "girl";
     wx.request({
       url: 'https://www.badme.xyz/bottle/api/v1/bottle',
       method: 'POST',
