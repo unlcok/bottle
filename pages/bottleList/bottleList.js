@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function(options) {
     wx.request({
-      url: 'https://www.badme.xyz/bottle/api/v1/bottle/bottleList',
+      url: 'http://129.28.148.83:8188/bottle/api/v1/bottle/bottleList',
       method: 'GET',
       header: {
         "token": wx.getStorageSync("token")
@@ -42,7 +42,6 @@ Page({
     // websocket链接
     wx.connectSocket({
       url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + wx.getStorageSync("token")
-      //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
     });
   },
 

@@ -4,7 +4,7 @@
         <image src="./pic/back.png" class="bottle">
             <text class="title">漂流瓶</text>
             <view class="throw" hidden='{{hiddenName}}'>
-              <input class ="msg" type="text" bindinput="bottleContent"/>
+              <textarea placeholder="此刻你想说..." placeholder-style="color:#999999;" auto-height auto-focus adjust-position maxlength="100" class ="msg" bindinput="bottleContent"/>
               <button bindtap="throwBottle">扔出去</button>
               </view>
             <view class="box" />

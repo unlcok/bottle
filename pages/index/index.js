@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: '欢迎使用漂流瓶',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -22,7 +22,6 @@ Page({
     // websocket链接
     wx.connectSocket({
       url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + wx.getStorageSync("token")
-      //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
     })
   },
   onLoad: function () {
@@ -64,7 +63,7 @@ Page({
     // 发送用户信息到后台
     var token = wx.getStorageSync('token')
     wx.request({
-      url: 'https://www.badme.xyz/bottle/api/v1/user/saveInfo',
+      url: 'http://129.28.148.83:8188/bottle/api/v1/user/saveInfo',
       method: 'POST',
       data: {
         rawData: e.detail.rawData,

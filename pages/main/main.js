@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+   
   },
 
 
@@ -85,32 +85,59 @@ Page({
   },
 
   salvageBottle: function() {
-    wx.request({
-      url: 'https://www.badme.xyz/bottle/api/v1/bottle',
-      method: 'GET',
-      header: {
-        "token": wx.getStorageSync("token")
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.success === false){
-          wx.showToast({
-            title: res.data.resultMsg,
+    wx.showModal({
+      title: '矮油,捞到咯',
+      content: '现在要打开么？',
+      success: function(sm) {
+        if (sm.confirm) {
+          wx.navigateTo({
+            url: '../bottleList/bottleList'
           })
-        } else if (res.data.data == null){
+        } else {
           wx.showToast({
-            title: '捞到了空瓶子',
-          })
-        }else {
-          wx.showToast({
-            title: '打捞成功',
+            title: '稍后可在瓶子列表中查看呦',
           })
         }
       }
     })
+    // wx.request({
+    //   url: 'http://129.28.148.83:8188/bottle/api/v1/bottle',
+    //   method: 'GET',
+    //   header: {
+    //     "token": wx.getStorageSync("token")
+    //   },
+    //   success: res => {
+    //     console.log(res);
+    //     if (res.data.success === false){
+    //       wx.showToast({
+    //         title: res.data.resultMsg,
+    //       })
+    //     } else if (res.data.data == null){
+    //       wx.showToast({
+    //         title: '捞到了空瓶子',
+    //       })
+    //     }else {
+    //       wx.showModal({
+    //         title: '矮油,捞到咯',
+    //         content: '现在要打开么？',
+    //         success: function (sm) {
+    //           if (sm.confirm) {
+    //             wx.navigateTo({
+    //               url: '../bottleList/bottleList'
+    //             })
+    //           } else{
+    //             wx.showToast({
+    //               title: '稍后可在瓶子列表中查看呦',
+    //             })
+    //           }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   },
 
-  bottleList: function () {
+  bottleList: function() {
     wx.navigateTo({
       url: '../bottleList/bottleList'
     })
@@ -120,7 +147,7 @@ Page({
     var user = wx.getStorageSync("userInfo");
     var type = user.gender === 1 ? "girl" : "man";
     wx.request({
-      url: 'https://www.badme.xyz/bottle/api/v1/bottle',
+      url: 'http://129.28.148.83:8188/bottle/api/v1/bottle',
       method: 'POST',
       data: {
         type: type,

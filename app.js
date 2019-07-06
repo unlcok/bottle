@@ -11,12 +11,13 @@ App({
         if (res.code) {
           // 发起网络请求
           wx.request({
-            url: 'https://www.badme.xyz/bottle/api/v1/user/wechat/login?code=' + res.code,
+            url: 'http://129.28.148.83:8188/bottle/api/v1/user/wechat/login?code=' + res.code,
             method: 'POST',
             success: data => {
+              console.log(data)
               token = data.data.data.token
               wx.setStorageSync('token', token)
-              // 获取用户信息
+              // 获取用户授权信息及用户信息
               wx.getSetting({
                 success: res => {
                   if (res.authSetting['scope.userInfo']) {
@@ -28,7 +29,7 @@ App({
                         this.globalData.userInfo = res.userInfo
                         // 发送用户信息到后台
                         wx.request({
-                          url: 'https://www.badme.xyz/bottle/api/v1/user/saveInfo',
+                          url: 'http://129.28.148.83:8188/bottle/api/v1/user/saveInfo',
                           method: 'POST',
                           data: {
                             rawData: res.rawData,
@@ -51,7 +52,6 @@ App({
               // websocket链接
               wx.connectSocket({
                 url: 'ws://129.28.148.83:8188/bottle/socket/chat?token=' + token
-                //url: 'ws://www.badme.xyz/bottle/socket/chat?token='+token
               })
             }
           })
@@ -61,16 +61,11 @@ App({
       }
     })
     wx.onSocketOpen(function() {
-      console.log("socket连接成功")
-      wx.showToast({
-        title: 'socket连接成功',
-      })
     })
     wx.onSocketMessage(function(res) {
       console.log("收到消息:" + res.data)
     })
     wx.onSocketClose(function() {
-      console.log("socket关闭")
     })
     wx.onSocketError(function() {
       console.log("socketError")
