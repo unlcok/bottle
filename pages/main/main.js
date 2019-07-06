@@ -147,9 +147,11 @@ Page({
   throwBottle: function() {
     var user = wx.getStorageSync("userInfo");
     var type = user.gender === 1 ? "man" : "girl";
+
     wx.request({
       url: 'http://129.28.148.83:8188/bottle/api/v1/bottle',
       method: 'POST',
+      
       data: {
         type: type,
         content: this.data.content
