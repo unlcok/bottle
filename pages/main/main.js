@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+
   },
 
 
@@ -98,6 +98,7 @@ Page({
             title: '稍后可在瓶子列表中查看呦',
           })
         }
+
       }
     })
     // wx.request({
@@ -145,7 +146,7 @@ Page({
 
   throwBottle: function() {
     var user = wx.getStorageSync("userInfo");
-    var type = user.gender === 1 ? "girl" : "man";
+    var type = user.gender === 1 ? "man" : "girl";
     wx.request({
       url: 'http://129.28.148.83:8188/bottle/api/v1/bottle',
       method: 'POST',
